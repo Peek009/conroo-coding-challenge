@@ -1,30 +1,31 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
+import { onMounted, onUnmounted } from 'vue'
 
-const { t } = useI18n()
+import AppHeader from './components/AppHeader.vue'
+import { useSlotStream } from './composables/useSlotStream.js'
+import { useSlotsStore } from './stores/slots.js'
+
+const slotsStore = useSlotsStore()
+const slotStream = useSlotStream()
+
+onMounted(() => {
+  void slotsStore.load()
+  slotStream.start()
+})
+
+onUnmounted(() => {
+  slotStream.stop()
+})
 </script>
 
 <template>
   <div class="app">
-    <header class="app__header">
-      <h1 class="app__title">
-        {{ t('app.title') }}
-      </h1>
-    </header>
+    <AppHeader />
   </div>
 </template>
 
 <style scoped lang="scss">
 .app {
   min-height: 100vh;
-
-  &__header {
-    padding: 1rem;
-  }
-
-  &__title {
-    margin: 0;
-    font-size: 1.5rem;
-  }
 }
 </style>

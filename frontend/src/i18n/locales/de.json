@@ -1,5 +1,14 @@
 {
-  "app": {
-    "title": "Terminal-Slot-Reservierungen"
+  "header": {
+    "title": "Terminal-Slot-Reservierungen",
+    "subtitle": "LKW-Reservierungen · Container-Abholung & -Anlieferung",
+    "lastUpdate": "Letztes Update",
+    "languageLabel": "Sprache: {name}"
+  },
+  "connection": {
+    "connecting": "Verbinde…",
+    "live": "Live",
+    "reconnecting": "Verbinde neu…",
+    "offline": "Offline"
   }
 }

@@ -1,5 +1,14 @@
 {
-  "app": {
-    "title": "Terminal Slot Reservations"
+  "header": {
+    "title": "Terminal Slot Reservations",
+    "subtitle": "Truck reservations · container pickup & delivery",
+    "lastUpdate": "Last update",
+    "languageLabel": "Language: {name}"
+  },
+  "connection": {
+    "connecting": "Connecting…",
+    "live": "Live",
+    "reconnecting": "Reconnecting…",
+    "offline": "Offline"
   }
 }

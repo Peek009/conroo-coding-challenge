@@ -1,5 +1,14 @@
 {
-  "app": {
-    "title": "Rezerwacje slotów terminalowych"
+  "header": {
+    "title": "Rezerwacje slotów terminalowych",
+    "subtitle": "Rezerwacje ciężarówek · odbiór i dostawa kontenerów",
+    "lastUpdate": "Ostatnia aktualizacja",
+    "languageLabel": "Język: {name}"
+  },
+  "connection": {
+    "connecting": "Łączenie…",
+    "live": "Na żywo",
+    "reconnecting": "Ponowne łączenie…",
+    "offline": "Offline"
   }
 }
