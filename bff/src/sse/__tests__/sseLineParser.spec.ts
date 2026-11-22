@@ -49,4 +49,38 @@ describe('createSseLineParser', () => {
 
     expect(received).toEqual(['{"id":1}'])
   })
+
+  it('parses the real upstream payload (empty id field, multiple events)', () => {
+    const received: string[] = []
+    const feed = createSseLineParser((data) => received.push(data))
+
+    feed(
+      [
+        'id: ',
+        'data: {"id":47,"currentCapacity":46,"category":"red"}',
+        '',
+        'id: ',
+        'data: {"id":3,"currentCapacity":47,"category":"red"}',
+        '',
+        'id: ',
+        'data: {"id":26,"currentCapacity":44,"category":"red"}',
+        '',
+        'id: ',
+        'data: {"id":34,"currentCapacity":3,"category":"green"}',
+        '',
+        'id: ',
+        'data: {"id":6,"currentCapacity":33,"category":"red"}',
+        '',
+        '',
+      ].join('\n'),
+    )
+
+    expect(received.map((data) => JSON.parse(data))).toEqual([
+      { id: 47, currentCapacity: 46, category: 'red' },
+      { id: 3, currentCapacity: 47, category: 'red' },
+      { id: 26, currentCapacity: 44, category: 'red' },
+      { id: 34, currentCapacity: 3, category: 'green' },
+      { id: 6, currentCapacity: 33, category: 'red' },
+    ])
+  })
 })
