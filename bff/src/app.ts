@@ -4,8 +4,7 @@ import pinoHttp from 'pino-http'
 
 import { env } from './config/env.js'
 import { logger } from './logger.js'
-import { createSseRouter } from './routes/sse.route.js'
-import { timeSlotsRouter } from './routes/timeSlots.route.js'
+import { createRoutes } from './routes/index.js'
 import { createSseHub, type SseHub } from './sse/sseHub.js'
 
 export function createApp(hub: SseHub = createSseHub()) {
@@ -15,8 +14,7 @@ export function createApp(hub: SseHub = createSseHub()) {
   app.use(pinoHttp({ logger }))
   app.use(express.json())
 
-  app.use(timeSlotsRouter)
-  app.use(createSseRouter(hub))
+  app.use(createRoutes(hub))
 
   return app
 }
