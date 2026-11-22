@@ -1,8 +1,24 @@
+import type { Request, Response } from 'express'
 import { Router } from 'express'
 
-export const sseRouter = Router()
+import type { SseHub } from '../sse/sseHub.js'
 
-// relaying the external SSE stream lands in a follow-up commit
-sseRouter.get('/sse', (_req, res) => {
-  res.status(501).json({ error: 'not implemented' })
-})
+export function sseRequestHandler(hub: SseHub) {
+  return function handleSseRequest(req: Request, res: Response): void {
+    res.set({
+      'Content-Type': 'text/event-stream',
+      'Cache-Control': 'no-cache',
+      Connection: 'keep-alive',
+    })
+    res.flushHeaders()
+
+    hub.subscribe(res)
+    req.on('close', () => hub.unsubscribe(res))
+  }
+}
+
+export function createSseRouter(hub: SseHub) {
+  const router = Router()
+  router.get('/sse', sseRequestHandler(hub))
+  return router
+}
