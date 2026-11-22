@@ -12,11 +12,6 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
-  css: {
-    preprocessorOptions: {
-      scss: { api: 'modern' },
-    },
-  },
   server: {
     // same-origin in dev so the app never needs to know the BFF's address or CORS
     proxy: {
