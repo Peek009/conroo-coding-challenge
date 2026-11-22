@@ -1,0 +1,7 @@
+packages:
+  - frontend
+  - bff
+allowBuilds:
+  '@parcel/watcher': true
+  esbuild: true
+  vue-demi: true
