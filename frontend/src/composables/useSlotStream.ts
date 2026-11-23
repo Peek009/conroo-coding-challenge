@@ -8,10 +8,7 @@ export function useSlotStream() {
   function start(): void {
     unsubscribe?.();
     unsubscribe = subscribeToTimeSlotUpdates({
-      onUpdate: (update) => {
-        store.applyUpdate(update);
-        store.touch();
-      },
+      onUpdate: (update) => store.applyUpdate(update),
       onOpen: () => store.setConnection('live'),
       onError: () => store.setConnection('reconnecting'),
     });
