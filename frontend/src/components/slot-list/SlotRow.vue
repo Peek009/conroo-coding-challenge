@@ -102,6 +102,7 @@ const ariaLabel = computed(
 
   &__count {
     position: relative;
+    justify-self: start;
     font-family: $font-mono;
     font-size: $fs-base;
   }
