@@ -145,7 +145,7 @@ const formattedDate = computed(() =>
   }
 }
 
-@media (width <= 640px) {
+@media (width <= $breakpoint-mobile) {
   .date-tab {
     padding: 10px;
     align-items: center;
@@ -164,6 +164,10 @@ const formattedDate = computed(() =>
 
     &__date {
       font-size: $fs-base;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
     }
   }
 }

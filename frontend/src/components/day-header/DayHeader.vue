@@ -69,7 +69,7 @@ const timeRange = computed(
   }
 }
 
-@media (width <= 640px) {
+@media (width <= $breakpoint-mobile) {
   .day-header__title {
     font-size: 20px;
   }

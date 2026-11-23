@@ -59,7 +59,7 @@ import SkeletonBlock from '../base/SkeletonBlock.vue';
   pointer-events: none;
 }
 
-@media (width <= 640px) {
+@media (width <= $breakpoint-mobile) {
   .slot-row {
     grid-template-columns: 76px 1fr auto;
     padding: 10px 14px;

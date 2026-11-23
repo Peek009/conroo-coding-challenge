@@ -93,7 +93,7 @@ function capacityChangeFor(slotId: number): number | undefined {
   }
 }
 
-@media (width <= 640px) {
+@media (width <= $breakpoint-mobile) {
   .slot-panel {
     background: none;
     border: none;

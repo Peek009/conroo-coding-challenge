@@ -126,7 +126,7 @@ const { t } = useI18n();
   }
 }
 
-@media (width <= 640px) {
+@media (width <= $breakpoint-mobile) {
   .app-header {
     &__inner {
       display: flex;

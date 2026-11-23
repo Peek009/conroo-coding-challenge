@@ -155,7 +155,7 @@ const formattedTime = computed(() => {
   }
 }
 
-@media (width <= 640px) {
+@media (width <= $breakpoint-mobile) {
   .live-status {
     &__last {
       display: none;

@@ -54,7 +54,7 @@ import SkeletonBlock from '../base/SkeletonBlock.vue';
   }
 }
 
-@media (width <= 640px) {
+@media (width <= $breakpoint-mobile) {
   .date-tab {
     padding: 10px;
     align-items: center;

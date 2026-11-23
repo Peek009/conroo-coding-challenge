@@ -52,7 +52,7 @@ const { t } = useI18n();
   }
 }
 
-@media (width <= 640px) {
+@media (width <= $breakpoint-mobile) {
   .gap-row {
     grid-template-columns: 76px minmax(0, 1fr);
     padding: 8px 14px;

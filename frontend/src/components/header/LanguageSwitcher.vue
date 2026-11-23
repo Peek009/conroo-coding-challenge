@@ -285,7 +285,7 @@ onUnmounted(() => {
   }
 }
 
-@media (width <= 640px) {
+@media (width <= $breakpoint-mobile) {
   .lang-switcher {
     &__button {
       min-height: 44px;

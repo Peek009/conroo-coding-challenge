@@ -172,7 +172,7 @@ const ariaLabel = computed(
   }
 }
 
-@media (width <= 640px) {
+@media (width <= $breakpoint-mobile) {
   .slot-row {
     background: $color-surface;
     border: 1px solid $color-border;

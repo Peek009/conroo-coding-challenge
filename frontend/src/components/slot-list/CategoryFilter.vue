@@ -23,7 +23,7 @@ const CATEGORIES: Category[] = ['green', 'yellow', 'red'];
       @click="$emit('toggle', category)"
     >
       <span class="filter-chip__dot" />
-      {{ t(`category.${category}`) }}
+      <span class="filter-chip__label">{{ t(`category.${category}`) }}</span>
       <span class="filter-chip__count">{{ counts[category] }}</span>
     </button>
   </div>
@@ -107,16 +107,19 @@ const CATEGORIES: Category[] = ['green', 'yellow', 'red'];
   }
 }
 
-@media (width <= 640px) {
-  .category-filter {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    width: 100%;
-    padding-bottom: 4px;
+@media (width <= $breakpoint-mobile) {
+  .category-filter__label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
   }
 
   .filter-chip {
-    flex-shrink: 0;
+    padding: 6px 10px;
+    gap: 6px;
   }
 }
 </style>

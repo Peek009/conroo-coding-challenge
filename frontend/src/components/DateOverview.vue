@@ -58,7 +58,7 @@ const showSkeleton = computed(() => !hasSelectedDay.value && store.status !== 'e
   gap: $space-3;
 }
 
-@media (width <= 640px) {
+@media (width <= $breakpoint-mobile) {
   .date-overview {
     padding: $space-4;
     gap: $space-4;

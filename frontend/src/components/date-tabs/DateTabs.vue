@@ -57,7 +57,7 @@ const showSkeleton = computed(() => store.days.length === 0 && store.status !== 
   }
 }
 
-@media (width <= 640px) {
+@media (width <= $breakpoint-mobile) {
   .date-tabs {
     grid-auto-columns: minmax(96px, 1fr);
     gap: $space-2;
