@@ -1,7 +1,7 @@
-import { z } from 'zod'
+import { z } from 'zod';
 
-export const categorySchema = z.enum(['green', 'yellow', 'red'])
-export type Category = z.infer<typeof categorySchema>
+export const categorySchema = z.enum(['green', 'yellow', 'red']);
+export type Category = z.infer<typeof categorySchema>;
 
 export const timeSlotSchema = z.object({
   id: z.number(),
@@ -12,20 +12,20 @@ export const timeSlotSchema = z.object({
     current: z.number(),
     max: z.number(),
   }),
-})
-export type TimeSlot = z.infer<typeof timeSlotSchema>
+});
+export type TimeSlot = z.infer<typeof timeSlotSchema>;
 
 function asRecord(value: unknown): Record<string, unknown> | undefined {
   return typeof value === 'object' && value !== null
     ? (value as Record<string, unknown>)
-    : undefined
+    : undefined;
 }
 
 function mapRawFieldAliases(raw: unknown): unknown {
-  const record = asRecord(raw)
-  if (!record) return raw
+  const record = asRecord(raw);
+  if (!record) return raw;
 
-  const capacity = asRecord(record.capacity)
+  const capacity = asRecord(record.capacity);
 
   return {
     id: record.id,
@@ -36,13 +36,13 @@ function mapRawFieldAliases(raw: unknown): unknown {
       current: capacity.current_capacity ?? capacity.current,
       max: capacity.max_capacity ?? capacity.maximum,
     },
-  }
+  };
 }
 
 export function normalizeTimeSlot(raw: unknown): TimeSlot {
-  return timeSlotSchema.parse(mapRawFieldAliases(raw))
+  return timeSlotSchema.parse(mapRawFieldAliases(raw));
 }
 
 export function normalizeTimeSlots(raw: unknown): TimeSlot[] {
-  return z.array(z.unknown()).parse(raw).map(normalizeTimeSlot)
+  return z.array(z.unknown()).parse(raw).map(normalizeTimeSlot);
 }

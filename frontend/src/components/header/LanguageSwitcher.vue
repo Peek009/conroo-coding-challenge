@@ -1,86 +1,89 @@
 <script setup lang="ts">
-import { nextTick, onMounted, onUnmounted, ref } from 'vue'
-import { useI18n } from 'vue-i18n'
+import { nextTick, onMounted, onUnmounted, ref } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 import {
   LOCALE_NAMES,
   SUPPORTED_LOCALES,
   useSettingsStore,
   type SupportedLocale,
-} from '../stores/settings.js'
+} from '../../stores/settings.js';
 
-const { t } = useI18n()
-const settings = useSettingsStore()
+const { t } = useI18n();
+const settings = useSettingsStore();
 
-const isOpen = ref(false)
-const rootRef = ref<HTMLElement>()
-const buttonRef = ref<HTMLButtonElement>()
-const menuRef = ref<HTMLUListElement>()
+const isOpen = ref(false);
+const rootRef = ref<HTMLElement>();
+const buttonRef = ref<HTMLButtonElement>();
+const menuRef = ref<HTMLUListElement>();
 
 function open(): void {
-  isOpen.value = true
+  isOpen.value = true;
   void nextTick(() => {
-    menuRef.value?.querySelector<HTMLElement>('[aria-checked="true"]')?.focus()
-  })
+    menuRef.value?.querySelector<HTMLElement>('[aria-checked="true"]')?.focus();
+  });
 }
 
 function close(): void {
-  if (!isOpen.value) return
-  isOpen.value = false
-  buttonRef.value?.focus()
+  if (!isOpen.value) return;
+  isOpen.value = false;
+  buttonRef.value?.focus();
 }
 
 function toggle(): void {
   if (isOpen.value) {
-    close()
+    close();
   } else {
-    open()
+    open();
   }
 }
 
 function choose(code: SupportedLocale): void {
-  settings.setLocale(code)
-  close()
+  settings.setLocale(code);
+  close();
 }
 
 function onMenuKeydown(event: KeyboardEvent): void {
-  if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return
+  if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return;
 
-  const options = Array.from(menuRef.value?.querySelectorAll<HTMLElement>('[data-locale]') ?? [])
-  if (options.length === 0) return
+  const options = Array.from(menuRef.value?.querySelectorAll<HTMLElement>('[data-locale]') ?? []);
+  if (options.length === 0) return;
 
-  const index = options.indexOf(document.activeElement as HTMLElement)
-  event.preventDefault()
+  const index = options.indexOf(document.activeElement as HTMLElement);
+  event.preventDefault();
 
   const nextIndex =
     event.key === 'ArrowDown'
       ? (index + 1) % options.length
-      : (index - 1 + options.length) % options.length
-  options[nextIndex]?.focus()
+      : (index - 1 + options.length) % options.length;
+  options[nextIndex]?.focus();
 }
 
 function onDocumentClick(event: MouseEvent): void {
-  if (!(event.target instanceof Node)) return
-  if (rootRef.value && !rootRef.value.contains(event.target)) close()
+  if (!(event.target instanceof Node)) return;
+  if (rootRef.value && !rootRef.value.contains(event.target)) close();
 }
 
 function onDocumentKeydown(event: KeyboardEvent): void {
-  if (event.key === 'Escape' && isOpen.value) close()
+  if (event.key === 'Escape' && isOpen.value) close();
 }
 
 onMounted(() => {
-  document.addEventListener('click', onDocumentClick)
-  document.addEventListener('keydown', onDocumentKeydown)
-})
+  document.addEventListener('click', onDocumentClick);
+  document.addEventListener('keydown', onDocumentKeydown);
+});
 
 onUnmounted(() => {
-  document.removeEventListener('click', onDocumentClick)
-  document.removeEventListener('keydown', onDocumentKeydown)
-})
+  document.removeEventListener('click', onDocumentClick);
+  document.removeEventListener('keydown', onDocumentKeydown);
+});
 </script>
 
 <template>
-  <div ref="rootRef" class="lang-switcher">
+  <div
+    ref="rootRef"
+    class="lang-switcher"
+  >
     <button
       ref="buttonRef"
       class="lang-switcher__button"
@@ -91,7 +94,10 @@ onUnmounted(() => {
       :aria-label="t('header.languageLabel', { name: LOCALE_NAMES[settings.locale] })"
       @click="toggle"
     >
-      <span class="lang-switcher__flag" :class="`lang-switcher__flag--${settings.locale}`" />
+      <span
+        class="lang-switcher__flag"
+        :class="`lang-switcher__flag--${settings.locale}`"
+      />
       <svg
         class="lang-switcher__chevron"
         width="12"
@@ -117,7 +123,12 @@ onUnmounted(() => {
       role="menu"
       @keydown="onMenuKeydown"
     >
-      <li v-for="code in SUPPORTED_LOCALES" :key="code" role="none" class="lang-switcher__item">
+      <li
+        v-for="code in SUPPORTED_LOCALES"
+        :key="code"
+        role="none"
+        class="lang-switcher__item"
+      >
         <button
           class="lang-switcher__option"
           type="button"
@@ -127,7 +138,10 @@ onUnmounted(() => {
           @click="choose(code)"
         >
           <div class="lang-switcher__label">
-            <span class="lang-switcher__flag" :class="`lang-switcher__flag--${code}`" />
+            <span
+              class="lang-switcher__flag"
+              :class="`lang-switcher__flag--${code}`"
+            />
             {{ LOCALE_NAMES[code] }}
           </div>
           <svg
@@ -153,8 +167,8 @@ onUnmounted(() => {
 </template>
 
 <style scoped lang="scss">
-@use '../assets/styles/variables' as *;
-@use '../assets/styles/images' as *;
+@use '../../assets/styles/variables' as *;
+@use '../../assets/styles/images' as *;
 
 .lang-switcher {
   position: relative;

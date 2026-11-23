@@ -1,43 +1,43 @@
-import { createPinia, setActivePinia } from 'pinia'
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { createPinia, setActivePinia } from 'pinia';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { subscribeToTimeSlotUpdates } from '../../services/timeSlotsSse.js'
-import { useSlotsStore } from '../../stores/slots.js'
-import { useSlotStream } from '../useSlotStream.js'
+import { subscribeToTimeSlotUpdates } from '../../services/timeSlotsSse.js';
+import { useSlotsStore } from '../../stores/slots.js';
+import { useSlotStream } from '../useSlotStream.js';
 
 vi.mock('../../services/timeSlotsSse.js', () => ({
   subscribeToTimeSlotUpdates: vi.fn(),
-}))
+}));
 
 describe('useSlotStream', () => {
   beforeEach(() => {
-    setActivePinia(createPinia())
-    vi.mocked(subscribeToTimeSlotUpdates).mockReset()
-  })
+    setActivePinia(createPinia());
+    vi.mocked(subscribeToTimeSlotUpdates).mockReset();
+  });
 
   it('sets connection to live on open', () => {
     vi.mocked(subscribeToTimeSlotUpdates).mockImplementation(({ onOpen }) => {
-      onOpen?.()
-      return vi.fn()
-    })
-    const store = useSlotsStore()
+      onOpen?.();
+      return vi.fn();
+    });
+    const store = useSlotsStore();
 
-    useSlotStream().start()
+    useSlotStream().start();
 
-    expect(store.connection).toBe('live')
-  })
+    expect(store.connection).toBe('live');
+  });
 
   it('sets connection to reconnecting on error', () => {
     vi.mocked(subscribeToTimeSlotUpdates).mockImplementation(({ onError }) => {
-      onError?.()
-      return vi.fn()
-    })
-    const store = useSlotsStore()
+      onError?.();
+      return vi.fn();
+    });
+    const store = useSlotsStore();
 
-    useSlotStream().start()
+    useSlotStream().start();
 
-    expect(store.connection).toBe('reconnecting')
-  })
+    expect(store.connection).toBe('reconnecting');
+  });
 
   it('applies updates and touches lastUpdateAt on message', () => {
     const slot = {
@@ -46,42 +46,46 @@ describe('useSlotStream', () => {
       endTime: '2024-07-23T08:30:00',
       category: 'yellow' as const,
       capacity: { current: 20, max: 50 },
-    }
+    };
     vi.mocked(subscribeToTimeSlotUpdates).mockImplementation(({ onUpdate }) => {
-      onUpdate({ id: 1, currentCapacity: 35, category: 'red' })
-      return vi.fn()
-    })
-    const store = useSlotsStore()
-    store.slots = [slot]
+      onUpdate({ id: 1, currentCapacity: 35, category: 'red' });
+      return vi.fn();
+    });
+    const store = useSlotsStore();
+    store.slotsById = new Map([[slot.id, slot]]);
 
-    useSlotStream().start()
+    useSlotStream().start();
 
-    expect(store.slots[0]).toEqual({ ...slot, category: 'red', capacity: { current: 35, max: 50 } })
-    expect(store.lastUpdateAt).toBeInstanceOf(Date)
-  })
+    expect(store.slotsById.get(1)).toEqual({
+      ...slot,
+      category: 'red',
+      capacity: { current: 35, max: 50 },
+    });
+    expect(store.lastUpdateAt).toBeInstanceOf(Date);
+  });
 
   it('stops the previous subscription when starting again', () => {
-    const stop1 = vi.fn()
-    const stop2 = vi.fn()
-    vi.mocked(subscribeToTimeSlotUpdates).mockReturnValueOnce(stop1).mockReturnValueOnce(stop2)
-    const stream = useSlotStream()
+    const stop1 = vi.fn();
+    const stop2 = vi.fn();
+    vi.mocked(subscribeToTimeSlotUpdates).mockReturnValueOnce(stop1).mockReturnValueOnce(stop2);
+    const stream = useSlotStream();
 
-    stream.start()
-    stream.start()
+    stream.start();
+    stream.start();
 
-    expect(stop1).toHaveBeenCalled()
-  })
+    expect(stop1).toHaveBeenCalled();
+  });
 
   it('stop() unsubscribes and sets connection to offline', () => {
-    const unsubscribe = vi.fn()
-    vi.mocked(subscribeToTimeSlotUpdates).mockReturnValue(unsubscribe)
-    const store = useSlotsStore()
-    const stream = useSlotStream()
+    const unsubscribe = vi.fn();
+    vi.mocked(subscribeToTimeSlotUpdates).mockReturnValue(unsubscribe);
+    const store = useSlotsStore();
+    const stream = useSlotStream();
 
-    stream.start()
-    stream.stop()
+    stream.start();
+    stream.stop();
 
-    expect(unsubscribe).toHaveBeenCalled()
-    expect(store.connection).toBe('offline')
-  })
-})
+    expect(unsubscribe).toHaveBeenCalled();
+    expect(store.connection).toBe('offline');
+  });
+});

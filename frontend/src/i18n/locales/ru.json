@@ -10,5 +10,37 @@
     "live": "Активно",
     "reconnecting": "Переподключение…",
     "offline": "Офлайн"
+  },
+  "category": {
+    "green": "Доступно",
+    "yellow": "Ограничено",
+    "red": "Почти заполнено"
+  },
+  "day": {
+    "datesLabel": "Даты",
+    "free": "{n} свободно",
+    "booked": "забронировано",
+    "slots": "{n} слотов",
+    "show": "Показать",
+    "tabCounts": "{g} доступно · {y} ограничено · {r} почти заполнено"
+  },
+  "slot": {
+    "listLabel": "Временные слоты",
+    "booked": "забронировано",
+    "free": "{n} свободно",
+    "fullyBooked": "Полностью забронировано",
+    "noSlots": "Нет слотов",
+    "updated": "{change}",
+    "announce": "{range}: забронировано {current} из {max}, {label}",
+    "part": {
+      "morning": "Утро",
+      "afternoon": "День",
+      "evening": "Вечер"
+    },
+    "columnTime": "Время",
+    "columnAvailability": "Доступность",
+    "columnBooked": "Забронировано",
+    "columnFree": "Свободно",
+    "columnStatus": "Статус"
   }
 }

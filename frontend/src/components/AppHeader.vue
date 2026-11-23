@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
+import { useI18n } from 'vue-i18n';
 
-import Headline from './base/Headline.vue'
-import LanguageSwitcher from './LanguageSwitcher.vue'
-import LiveStatus from './LiveStatus.vue'
+import Headline from './base/Headline.vue';
+import LanguageSwitcher from './header/LanguageSwitcher.vue';
+import LiveStatus from './header/LiveStatus.vue';
 
-const { t } = useI18n()
+const { t } = useI18n();
 </script>
 
 <template>
@@ -13,8 +13,22 @@ const { t } = useI18n()
     <div class="app-header__inner">
       <div class="app-header__brand">
         <div class="app-header__logo">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <rect x="2.5" y="6" width="19" height="12" rx="1.5" stroke="#fff" stroke-width="1.6" />
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            aria-hidden="true"
+          >
+            <rect
+              x="2.5"
+              y="6"
+              width="19"
+              height="12"
+              rx="1.5"
+              stroke="#fff"
+              stroke-width="1.6"
+            />
             <path
               d="M7 9v6M10.5 9v6M14 9v6M17.5 9v6"
               stroke="#fff"
@@ -33,7 +47,10 @@ const { t } = useI18n()
 
       <div class="app-header__actions">
         <LiveStatus />
-        <span class="app-header__divider" aria-hidden="true" />
+        <span
+          class="app-header__divider"
+          aria-hidden="true"
+        />
         <LanguageSwitcher />
       </div>
     </div>
@@ -49,7 +66,6 @@ const { t } = useI18n()
 
   &__inner {
     max-width: $content-max;
-    //min-height: 105px;
     margin: 0 auto;
     padding: $space-4 $space-8;
     display: flex;

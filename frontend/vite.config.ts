@@ -1,9 +1,9 @@
-import { fileURLToPath, URL } from 'node:url'
+import { fileURLToPath, URL } from 'node:url';
 
-import vue from '@vitejs/plugin-vue'
-import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue';
+import { defineConfig } from 'vite';
 
-const bffTarget = process.env.VITE_BFF_URL ?? 'http://localhost:4000'
+const bffTarget = process.env.VITE_BFF_URL ?? 'http://localhost:4000';
 
 export default defineConfig({
   plugins: [vue()],
@@ -23,11 +23,11 @@ export default defineConfig({
         // SSE has none until the first event, so the EventSource never opens without this
         configure: (proxy) => {
           proxy.on('proxyRes', (proxyRes, _req, res) => {
-            res.writeHead(proxyRes.statusCode ?? 200, proxyRes.headers)
-            res.flushHeaders()
-          })
+            res.writeHead(proxyRes.statusCode ?? 200, proxyRes.headers);
+            res.flushHeaders();
+          });
         },
       },
     },
   },
-})
+});

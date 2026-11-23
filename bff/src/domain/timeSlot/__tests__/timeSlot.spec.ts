@@ -1,6 +1,6 @@
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it } from 'vitest';
 
-import { normalizeTimeSlot, normalizeTimeSlots } from '../timeSlot.js'
+import { normalizeTimeSlot, normalizeTimeSlots } from '../timeSlot.js';
 
 describe('normalizeTimeSlot', () => {
   it('normalizes the snake_case variant', () => {
@@ -10,7 +10,7 @@ describe('normalizeTimeSlot', () => {
       end_time: '2024-07-23T08:30:00',
       category: 'yellow',
       capacity: { current_capacity: 20, max_capacity: 50 },
-    }
+    };
 
     expect(normalizeTimeSlot(raw)).toEqual({
       id: 1,
@@ -18,8 +18,8 @@ describe('normalizeTimeSlot', () => {
       endTime: '2024-07-23T08:30:00',
       category: 'yellow',
       capacity: { current: 20, max: 50 },
-    })
-  })
+    });
+  });
 
   it('normalizes the camelCase variant', () => {
     const raw = {
@@ -28,7 +28,7 @@ describe('normalizeTimeSlot', () => {
       endTime: '2024-07-23T09:00:00',
       category: 'red',
       capacity: { current: 40, maximum: 50 },
-    }
+    };
 
     expect(normalizeTimeSlot(raw)).toEqual({
       id: 2,
@@ -36,18 +36,18 @@ describe('normalizeTimeSlot', () => {
       endTime: '2024-07-23T09:00:00',
       category: 'red',
       capacity: { current: 40, max: 50 },
-    })
-  })
+    });
+  });
 
   it('throws when a required field has a wrong name', () => {
     const raw = {
       id: 3,
       category: 'green',
       capacity: { current: 10, maximum: 50 },
-    }
+    };
 
-    expect(() => normalizeTimeSlot(raw)).toThrow(/startTime/)
-  })
+    expect(() => normalizeTimeSlot(raw)).toThrow(/startTime/);
+  });
 
   it('normalizes fields mixed across both naming variants', () => {
     const raw = {
@@ -56,7 +56,7 @@ describe('normalizeTimeSlot', () => {
       endTime: '2024-07-23T08:30:00',
       category: 'green',
       capacity: { current_capacity: 10, maximum: 50 },
-    }
+    };
 
     expect(normalizeTimeSlot(raw)).toEqual({
       id: 4,
@@ -64,9 +64,9 @@ describe('normalizeTimeSlot', () => {
       endTime: '2024-07-23T08:30:00',
       category: 'green',
       capacity: { current: 10, max: 50 },
-    })
-  })
-})
+    });
+  });
+});
 
 describe('normalizeTimeSlots', () => {
   it('normalizes a mixed-shape array', () => {
@@ -85,7 +85,7 @@ describe('normalizeTimeSlots', () => {
         category: 'red',
         capacity: { current: 40, maximum: 50 },
       },
-    ]
+    ];
 
     expect(normalizeTimeSlots(raw)).toEqual([
       {
@@ -102,6 +102,6 @@ describe('normalizeTimeSlots', () => {
         category: 'red',
         capacity: { current: 40, max: 50 },
       },
-    ])
-  })
-})
+    ]);
+  });
+});

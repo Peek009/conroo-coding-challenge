@@ -10,5 +10,37 @@
     "live": "Na żywo",
     "reconnecting": "Ponowne łączenie…",
     "offline": "Offline"
+  },
+  "category": {
+    "green": "Dostępne",
+    "yellow": "Ograniczone",
+    "red": "Prawie pełne"
+  },
+  "day": {
+    "datesLabel": "Terminy",
+    "free": "{n} wolnych",
+    "booked": "zarezerwowane",
+    "slots": "{n} miejsc",
+    "show": "Pokaż",
+    "tabCounts": "{g} dostępne · {y} ograniczone · {r} prawie pełne"
+  },
+  "slot": {
+    "listLabel": "Terminy rezerwacji",
+    "booked": "zarezerwowane",
+    "free": "{n} wolnych",
+    "fullyBooked": "W pełni zarezerwowane",
+    "noSlots": "Brak terminów",
+    "updated": "{change}",
+    "announce": "{range}: {current} z {max} zarezerwowane, {label}",
+    "part": {
+      "morning": "Rano",
+      "afternoon": "Popołudnie",
+      "evening": "Wieczór"
+    },
+    "columnTime": "Czas",
+    "columnAvailability": "Dostępność",
+    "columnBooked": "Zarezerwowane",
+    "columnFree": "Wolne",
+    "columnStatus": "Status"
   }
 }

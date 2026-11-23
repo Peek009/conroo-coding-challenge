@@ -5,27 +5,54 @@ $color-ink: #15191e;
 $color-muted: #5b6470;
 $color-border: #e1e4e8;
 $color-border-subtle: #edeff2;
+$color-border-inactive: #d5d9de;
+$color-border-dashed: #c9ced5;
 $color-bg: #f4f5f7;
 $color-surface: #ffffff;
 $color-accent: #1d3b66;
 $color-accent-soft: #eef3fb;
+$color-accent-on-dark: #c9d4e5;
+$color-accent-highlight: #e3ecfa;
+$color-danger-text: #9e2a21;
 $color-live: #2f6fd6;
 $color-neutral-strong: #3a424c;
+$color-skeleton: #e6e9ed;
+
+$cat-green-fg: #17633a;
+$cat-green-bg: #e2f1e7;
+$cat-green-bar: #2e8b57;
+$cat-yellow-fg: #6e4a00;
+$cat-yellow-bg: #fff1cc;
+$cat-yellow-bar: #e3a008;
+$cat-red-fg: #9e2a21;
+$cat-red-bg: #fce4e1;
+$cat-red-bar: #c9372c;
 
 $space-1: 4px;
 $space-2: 8px;
 $space-3: 12px;
 $space-4: 16px;
+$space-6: 24px;
 $space-8: 32px;
 
 $radius-sm: 6px;
 $radius-md: 10px;
+$radius-lg: 12px;
 $radius-pill: 999px;
 $shadow-menu: 0 8px 24px rgba(20, 24, 31, 0.12);
+$shadow-card: 0 1px 2px rgba(20, 24, 31, 0.04);
+$ring-updated: 0 0 0 3px rgba(29, 59, 102, 0.18);
 
 $fs-sm: 12px;
 $fs-md: 13px;
 $fs-base: 14px;
+$fs-lg: 16px;
 $fs-xl: 18px;
+$fs-2xl: 24px;
+$fs-num: 26px;
 
 $content-max: 1360px;
+
+$highlight-duration: 2.4s;
+
+$slot-row-columns: 150px minmax(0, 1fr) 96px 110px 140px;

@@ -1,32 +1,36 @@
 <script setup lang="ts">
-import { storeToRefs } from 'pinia'
-import { computed } from 'vue'
-import { useI18n } from 'vue-i18n'
+import { storeToRefs } from 'pinia';
+import { computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 
-import { useSlotsStore } from '../stores/slots.js'
+import { useSlotsStore } from '../../stores/slots.js';
 
 const INTL_LOCALES: Record<string, string> = {
   en: 'en-GB',
   de: 'de-DE',
   pl: 'pl-PL',
   ru: 'ru-RU',
-}
+};
 
-const { t, locale } = useI18n()
-const { connection, lastUpdateAt } = storeToRefs(useSlotsStore())
+const { t, locale } = useI18n();
+const { connection, lastUpdateAt } = storeToRefs(useSlotsStore());
 
 const formattedTime = computed(() => {
-  if (!lastUpdateAt.value) return '–'
+  if (!lastUpdateAt.value) return '–';
   return new Intl.DateTimeFormat(INTL_LOCALES[locale.value] ?? 'en-GB', {
     hour: '2-digit',
     minute: '2-digit',
     second: '2-digit',
-  }).format(lastUpdateAt.value)
-})
+  }).format(lastUpdateAt.value);
+});
 </script>
 
 <template>
-  <div class="live-status" :class="`live-status--${connection}`" role="status">
+  <div
+    class="live-status"
+    :class="`live-status--${connection}`"
+    role="status"
+  >
     <span class="live-status__pill">
       <span class="live-status__dot" />
       <svg
@@ -54,7 +58,7 @@ const formattedTime = computed(() => {
 </template>
 
 <style scoped lang="scss">
-@use '../assets/styles/variables' as *;
+@use '../../assets/styles/variables' as *;
 
 .live-status {
   display: flex;
@@ -88,6 +92,7 @@ const formattedTime = computed(() => {
   &__time {
     font-family: $font-mono;
     color: $color-ink;
+    padding-left: $space-3;
   }
 }
 

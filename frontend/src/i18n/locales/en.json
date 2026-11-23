@@ -10,5 +10,37 @@
     "live": "Live",
     "reconnecting": "Reconnecting…",
     "offline": "Offline"
+  },
+  "category": {
+    "green": "Available",
+    "yellow": "Limited",
+    "red": "Almost full"
+  },
+  "day": {
+    "datesLabel": "Dates",
+    "free": "{n} free",
+    "booked": "booked",
+    "slots": "{n} slots",
+    "show": "Show",
+    "tabCounts": "{g} available · {y} limited · {r} almost full"
+  },
+  "slot": {
+    "listLabel": "Time slots",
+    "booked": "booked",
+    "free": "{n} free",
+    "fullyBooked": "Fully booked",
+    "noSlots": "No slots",
+    "updated": "{change}",
+    "announce": "{range}: {current} of {max} booked, {label}",
+    "part": {
+      "morning": "Morning",
+      "afternoon": "Afternoon",
+      "evening": "Evening"
+    },
+    "columnTime": "Time",
+    "columnAvailability": "Availability",
+    "columnBooked": "Booked",
+    "columnFree": "Free",
+    "columnStatus": "Status"
   }
 }

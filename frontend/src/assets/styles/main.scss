@@ -1,4 +1,5 @@
 @use 'variables' as *;
+@use 'images' as *;
 
 * {
   box-sizing: border-box;
@@ -10,4 +11,42 @@ body {
   font-size: $fs-base;
   color: $color-ink;
   background-color: $color-bg;
+}
+
+#app {
+  min-height: 100vh;
+}
+
+button {
+  cursor: pointer;
+}
+
+[data-category='green'] {
+  --cat-fg: #{$cat-green-fg};
+  --cat-bg: #{$cat-green-bg};
+  --cat-bar: #{$cat-green-bar};
+  --cat-icon: #{$icon-green};
+}
+
+[data-category='yellow'] {
+  --cat-fg: #{$cat-yellow-fg};
+  --cat-bg: #{$cat-yellow-bg};
+  --cat-bar: #{$cat-yellow-bar};
+  --cat-icon: #{$icon-yellow};
+}
+
+[data-category='red'] {
+  --cat-fg: #{$cat-red-fg};
+  --cat-bg: #{$cat-red-bg};
+  --cat-bar: #{$cat-red-bar};
+  --cat-icon: #{$icon-red};
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
