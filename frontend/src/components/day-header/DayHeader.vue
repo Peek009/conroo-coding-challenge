@@ -2,21 +2,17 @@
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 
-import { formatClockTime, type DaySummary } from '../../domain/timeSlot.js';
+import { useIntlLocale } from '../../composables/useIntlLocale.js';
+import { dateFromKey, formatClockTime, type DaySummary } from '../../domain/timeSlot.js';
 import Headline from '../base/Headline.vue';
 
 const props = defineProps<{ date: string; summary: DaySummary }>();
 
-const { t, locale } = useI18n();
-const INTL_LOCALES: Record<string, string> = { en: 'en-GB', de: 'de-DE', pl: 'pl-PL', ru: 'ru-RU' };
-
-function dateFromKey(key: string): Date {
-  const [year, month, day] = key.split('-').map(Number) as [number, number, number];
-  return new Date(Date.UTC(year, month - 1, day));
-}
+const { t } = useI18n();
+const intlLocale = useIntlLocale();
 
 const title = computed(() =>
-  new Intl.DateTimeFormat(INTL_LOCALES[locale.value] ?? 'en-GB', {
+  new Intl.DateTimeFormat(intlLocale.value, {
     weekday: 'long',
     day: 'numeric',
     month: 'long',

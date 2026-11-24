@@ -31,7 +31,7 @@
     "fullyBooked": "W pełni zarezerwowane",
     "noSlots": "Brak terminów",
     "updated": "{change}",
-    "announce": "{range}: {current} z {max} zarezerwowane, {label}",
+    "announce": "{date}, {range}: {current} z {max} zarezerwowane, {label}",
     "part": {
       "morning": "Rano",
       "afternoon": "Popołudnie",

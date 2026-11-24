@@ -38,6 +38,6 @@ describe('SlotAnnouncer', () => {
     store.applyUpdate({ id: 1, currentCapacity: 35, category: 'red' });
     await wrapper.vm.$nextTick();
 
-    expect(wrapper.text()).toBe('08:00–08:30: 35 of 50 booked, Almost full');
+    expect(wrapper.text()).toBe('Tuesday, 23 July 2024, 08:00–08:30: 35 of 50 booked, Almost full');
   });
 });

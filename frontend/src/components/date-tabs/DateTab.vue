@@ -2,23 +2,19 @@
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 
-import type { Category, DaySummary } from '../../domain/timeSlot.js';
+import { useIntlLocale } from '../../composables/useIntlLocale.js';
+import { dateFromKey, type Category, type DaySummary } from '../../domain/timeSlot.js';
 
 const props = defineProps<{ date: string; summary: DaySummary; selected: boolean }>();
 defineEmits<{ select: [] }>();
 
-const { t, locale } = useI18n();
+const { t } = useI18n();
+const intlLocale = useIntlLocale();
 
 const CATEGORIES: Category[] = ['green', 'yellow', 'red'];
-const INTL_LOCALES: Record<string, string> = { en: 'en-GB', de: 'de-DE', pl: 'pl-PL', ru: 'ru-RU' };
-
-function dateFromKey(key: string): Date {
-  const [year, month, day] = key.split('-').map(Number) as [number, number, number];
-  return new Date(Date.UTC(year, month - 1, day));
-}
 
 const formattedDate = computed(() =>
-  new Intl.DateTimeFormat(INTL_LOCALES[locale.value] ?? 'en-GB', {
+  new Intl.DateTimeFormat(intlLocale.value, {
     weekday: 'short',
     day: 'numeric',
     month: 'short',

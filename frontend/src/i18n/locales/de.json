@@ -31,7 +31,7 @@
     "fullyBooked": "Ausgebucht",
     "noSlots": "Keine Slots",
     "updated": "{change}",
-    "announce": "{range}: {current} von {max} gebucht, {label}",
+    "announce": "{date}, {range}: {current} von {max} gebucht, {label}",
     "part": {
       "morning": "Vormittag",
       "afternoon": "Nachmittag",

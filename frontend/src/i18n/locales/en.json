@@ -31,7 +31,7 @@
     "fullyBooked": "Fully booked",
     "noSlots": "No slots",
     "updated": "{change}",
-    "announce": "{range}: {current} of {max} booked, {label}",
+    "announce": "{date}, {range}: {current} of {max} booked, {label}",
     "part": {
       "morning": "Morning",
       "afternoon": "Afternoon",

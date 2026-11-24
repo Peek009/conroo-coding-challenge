@@ -79,10 +79,13 @@ frontend/src/
   external API and fans updates out to every browser tab.
 - **Validation at every boundary.** Both the BFF and the frontend check
   incoming data with Zod before using it.
-- **Thin, pure store.** The Pinia store only holds state — fetching and
+- **Thin, pure store.** The Pinia store only holds state. Fetching and
   SSE live in `services/` and `composables/`.
 - **Components split by feature.** `date-tabs/`, `day-header/`, `slot-list/`
   — not grouped by type.
 - **Four languages from day one.** i18n covers en/de/pl/ru, not just a
   single locale.
 - **No caching layer.** Kept simple on purpose for this scope.
+- **Screen reader support.** ARIA labels/roles on interactive elements
+  (tabs, filters, language menu) plus a dedicated `SlotAnnouncer` that
+  announces live slot updates via `aria-live="polite"`.

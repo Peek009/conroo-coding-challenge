@@ -3,21 +3,16 @@ import { storeToRefs } from 'pinia';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 
+import { useIntlLocale } from '../../composables/useIntlLocale.js';
 import { useSlotsStore } from '../../stores/slots.js';
 
-const INTL_LOCALES: Record<string, string> = {
-  en: 'en-GB',
-  de: 'de-DE',
-  pl: 'pl-PL',
-  ru: 'ru-RU',
-};
-
-const { t, locale } = useI18n();
+const { t } = useI18n();
+const intlLocale = useIntlLocale();
 const { connection, lastUpdateAt } = storeToRefs(useSlotsStore());
 
 const formattedTime = computed(() => {
   if (!lastUpdateAt.value) return '–';
-  return new Intl.DateTimeFormat(INTL_LOCALES[locale.value] ?? 'en-GB', {
+  return new Intl.DateTimeFormat(intlLocale.value, {
     hour: '2-digit',
     minute: '2-digit',
     second: '2-digit',

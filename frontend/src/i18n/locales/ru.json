@@ -31,7 +31,7 @@
     "fullyBooked": "Полностью забронировано",
     "noSlots": "Нет слотов",
     "updated": "{change}",
-    "announce": "{range}: забронировано {current} из {max}, {label}",
+    "announce": "{date}, {range}: забронировано {current} из {max}, {label}",
     "part": {
       "morning": "Утро",
       "afternoon": "День",

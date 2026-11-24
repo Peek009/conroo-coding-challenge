@@ -75,6 +75,11 @@ export function formatClockTime(minutes: number): string {
   return `${String(hours).padStart(2, '0')}:${String(mins).padStart(2, '0')}`;
 }
 
+export function dateFromKey(key: string): Date {
+  const [year, month, day] = key.split('-').map(Number) as [number, number, number];
+  return new Date(Date.UTC(year, month - 1, day));
+}
+
 function parseLocalTimestamp(timestamp: string): { date: string; minutes: number } {
   const match = /^(\d{4}-\d{2}-\d{2})T(\d{2}):(\d{2})/.exec(timestamp);
   if (!match) throw new Error(`invalid local timestamp: ${timestamp}`);

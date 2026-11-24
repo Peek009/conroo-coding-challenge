@@ -84,6 +84,11 @@ function capacityChangeFor(slotId: number): number | undefined {
     color: $color-muted;
     text-transform: uppercase;
     letter-spacing: 0.06em;
+
+    span {
+      min-width: 0;
+      overflow-wrap: break-word;
+    }
   }
 
   &__rows {
